@@ -1,0 +1,5 @@
+﻿projectNo,customerID,personInCharge,contactTitle,address,phone,plotSize,license,progress
+DZ1800K,KA51B,Lim Eng Sheng,Site Supervisor,471291,91284912,36000,18003716,On-Time
+DK1829B,KA51B,Natasha Khoo,Head Engineer,603812,98104837,24000,18002718,Delayed
+DK1837A,KA27U,Daniel Craig,Site Supervisor,780921,95837382,24000,18003722,On-Time
+DZ7382K,KA81B,Joe Judson,Site Supervisor,674450,98573921,26000,18003728,On-Time
