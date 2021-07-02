@@ -7,7 +7,7 @@ def getCSV(file):
     while True:
         try:
             file = input(file +' Data : ')
-            Data = pd.read_csv(r'' + 'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/' +  file) #Change File Path
+            Data = pd.read_csv(r'' + 'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/' +  file) #Change File Path  #ignore
             break
             
         except FileNotFoundError :
@@ -18,22 +18,22 @@ def getCSV(file):
 
 #Retrieve Order Data
 #orderData = getCSV('Order')
-orderData = pd.read_csv(r'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Order_Data.csv' ) #Change File Path
+orderData = pd.read_csv(r'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data/Order_Data.csv' ) #Change File Path
 #Retrieve Depot Worker Data
 #depotWorker = getCSV('Depot Worker')
-depotWorker = pd.read_csv(r'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Depot_Worker_Data.csv' ) #Change File Path
+depotWorker = pd.read_csv(r'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data/Depot_Worker_Data.csv' ) #Change File Path
 
 #Retrieve Site Worker Data
 #siteWorker = getCSV('Site Worker')
-siteWorker = pd.read_csv(r'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Site_Worker_Data.csv' ) #Change File Path
+siteWorker = pd.read_csv(r'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data/Site_Worker_Data.csv' ) #Change File Path
 
 #Retrieve Transport Worker Data
 #transportWorker = getCSV('Transport Worker')
-transportWorker = pd.read_csv(r'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Transport_Worker_Data.csv' ) #Change File Path
+transportWorker = pd.read_csv(r'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data/Transport_Worker_Data.csv' ) #Change File Path
 
 #Retrieve Project Data
 #projectData = getCSV('Project')
-projectData = pd.read_csv(r'E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Project_Data.csv' ) #Change File Path
+projectData = pd.read_csv(r'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data/Project_Data.csv' ) #Change File Path
 
 #Determine Delayed Projects & Retrieve Order Number
 delayedProjectNo = []
@@ -159,7 +159,7 @@ orderNo = str(orderNo)
 directory = orderNo + " Relation Data " + date
   
 # Parent Directory path
-parent_dir = "E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Relationship CSV" #Change File Path
+parent_dir = "C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/Relationship CSV" #Change File Path
   
 # Path
 path = os.path.join(parent_dir, directory)
