@@ -1,0 +1,32 @@
+//LOAD PROJECT
+LOAD CSV WITH HEADERS FROM 'file:///Project_Data.csv' AS row
+MERGE (pd:Project {projectNo: row.projectNo})
+  ON CREATE SET pd.customerID = row. customerID, pd.personInCharge = row.personInCharge, pd.contactTitle = row.contactTitle, pd.address = row.address, pd.phoneNo = row.phone, pd.plotSize = row.plotSize, pd.license = row.license, pd.progress = row.progress;
+
+//LOAD SITE WORKER DATA
+LOAD CSV WITH HEADERS FROM 'file:///Site_Worker_Data.csv' AS row
+MERGE (worker:siteWorker {workerID: row.workerID})
+  ON CREATE SET worker.Name = row.Name, worker.jobTitle = row.jobTitle, worker.license1 = row.license1, worker.license2 = row.license2, worker.noLicense = row.noLicense, worker.shift = row.shift, worker.level = row.level, worker.projectNo = row.projectNo, worker.availability = row.availability;
+
+//LOAD DEPOT WORKER DATA
+LOAD CSV WITH HEADERS FROM 'file:///Depot_Worker_Data.csv' AS row
+MERGE (worker:depotWorker {workerID: row.workerID})
+  ON CREATE SET worker.Name = row.Name, worker.jobTitle = row.jobTitle, worker.license1 = row.license1, worker.license2 = row.license2, worker.noLicense = row.noLicense, worker.shift = row.shift, worker.level = row.level, worker.availability = row.availability;
+
+//LOAD TRANSPORT WORKER DATA
+LOAD CSV WITH HEADERS FROM 'file:///Depot_Worker_Data.csv' AS row
+MERGE (worker:transportWorker {workerID: row.workerID})
+  ON CREATE SET worker.Name = row.Name, worker.jobTitle = row.jobTitle, worker.license1 = row.license1, worker.license2 = row.license2, worker.noLicense = row.noLicense, worker.shift = row.shift, worker.level = row.level, worker.availability = row.availability;
+
+//LOAD ORDER
+LOAD CSV WITH HEADERS FROM 'file:///Order_Data.csv' AS row
+MERGE (o:Order {orderNo: row.orderNo})
+  ON CREATE SET o.customerID = row.customerID, o.projectNo = row.projectNo, o.orderDate = row.orderDate, o.requiredDate = row.requiredDate, o.truck = row.truck, o.productID = row.productID, o.quantity = row.quantity, o.reqLoading = row.reqLoading, o.reqTransport = row.reqTransport, o.reqUnload = row.Unload ;
+
+//LOAD PROJECT
+LOAD CSV WITH HEADERS FROM 'file:///Project_Data.csv' AS row
+MERGE (pd:Project {projectNo: row.projectNo})
+  ON CREATE SET pd.customerID = row. customerID, pd.personInCharge = row.personInCharge, pd.contactTitle = row.contactTitle, pd.address = row.address, pd.phoneNo = row.phone, pd.plotSize = row.plotSize, pd.license = row.license, pd.progress = row.progress;
+
+//
+
