@@ -207,20 +207,6 @@ MATCH (worker:depotWorker {workerID: row.workerID})
 MATCH (orderNo:orderNo {orderNo: row.orderNo})
 MERGE (worker)-[:Available]->(orderNo);
 
-//DEPOT AVAILABLE RELATION
-
-
-//DEPOT AVAILABLE RELATION
-
-
-
-
-//DEPOT AVAILABLE RELATION
-
-
-
-//DEPOT AVAILABLE RELATION
-
 
 
 
