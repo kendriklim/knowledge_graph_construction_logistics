@@ -1,7 +1,7 @@
 //LOAD PROJECT
 LOAD CSV WITH HEADERS FROM 'file:///Project_Data.csv' AS row
 MERGE (pd:Project {projectNo: row.projectNo})
-  ON CREATE SET pd.customerID = row. customerID, pd.personInCharge = row.personInCharge, pd.contactTitle = row.contactTitle, pd.address = row.address, pd.phoneNo = row.phone, pd.plotSize = row.plotSize, pd.license = row.license, pd.progress = row.progress;
+  ON CREATE SET pd.customerID = row. customerID, pd.personInCharge = row.personInCharge, pd.contactTitle = row.contactTitle, pd.address = row.address, pd.phoneNo = row.phone, pd.plotSize = row.plotSize, pd.license = row.license, pd.progress = row.progress, pd.distance_DZ1800K = toInteger(row.distance_DZ1800K), pd.distance_DK1829B = toInteger(row.distance_DK1829B), pd.distance_DK1837A = toInteger(row.distance_DK1837A), pd.distance_DZ7382K = toInteger(row.distance_DZ7382K);
 
 //LOAD SITE WORKER DATA
 LOAD CSV WITH HEADERS FROM 'file:///Site_Worker_Data.csv' AS row
@@ -172,4 +172,17 @@ MATCH
     (tw:transportWorker)-[:Meets_Req]-(o),
     (project:Project)-[]-(sw)
 where o.Que = '1'
+return dp,sw,tw,o,project
+
+5) What options to carry out order with highest priority and workers are within a 10km traveling distance
+
+MATCH
+    (dp:depotWorker)-[:Available]-(o:Order),
+    (dp:depotWorker)-[:Meets_Req]-(o),
+    (sw:siteWorker)-[:Available]-(o),
+    (sw:siteWorker)-[:Meets_Req]-(o),
+    (tw:transportWorker)-[:Available]-(o),
+    (tw:transportWorker)-[:Meets_Req]-(o),
+    (project:Project)-[]-(sw)
+where o.Que = '1' AND  project.distance_DK1829B <=10
 return dp,sw,tw,o,project
