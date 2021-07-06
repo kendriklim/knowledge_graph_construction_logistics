@@ -46,6 +46,8 @@ MATCH (sw:siteWorker {workerID: row.workerID})
 MATCH (project:Project {projectNo: row.projectNo})
 MERGE (sw)-[:working_at]->(project)
 
+
+
 ##### IDENTIFY DELAYS #####
 
 //LOAD ORDER TO ADD PRIORITY AND QUE
@@ -76,8 +78,6 @@ MERGE (dw)-[:working_at]->(dp)
 MATCH (tw:transportWorker)
 MATCH (tr:Transport)
 MERGE (tw)-[:working_at]->(tr)
-
-
 
 
 //DEPOT WORKERS WHO MEET REQUIREMENT
@@ -128,7 +128,7 @@ MATCH (order:Order {orderNo: row.orderNo})
 MERGE (worker)-[:Available]->(order);
 
 
-//DEPOT-SITE REALTION
+//DEPOT-SITE RELATION
 =======
 B. IMPORT RELATIONS
 
@@ -142,7 +142,7 @@ MERGE (worker)-[:Shift_Overlap]->(worker2);
 
 <<<<<<< leroyBranch
 
-//DEPOT-TRANS REALTION
+//DEPOT-TRANS RELATION
 LOAD CSV WITH HEADERS FROM 'file:///Depot_Trans_Relation.csv' AS row
 
 MATCH (worker:depotWorker {workerID: row.workerID})
