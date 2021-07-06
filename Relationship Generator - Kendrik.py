@@ -24,10 +24,10 @@ def getCSV(file):
 
 ###### Change File Path ######
 #For Raw File Path 
-raw_data_path = 'E:/Documents/ARTC Internship/Neo4j/Construction Use Case'
+raw_data_path = 'C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/CSV Data'
 
 #For Save File Path | Parent Directory path
-parent_dir = "E:/Documents/ARTC Internship/Neo4j/Construction Use Case/Relationship CSV"
+parent_dir = "C:/Users/limyh2/Desktop/Git/knowledge_graph_construction_logistics/Relationship CSV"
 
 #Retrieve Order Data
 #orderData = getCSV('Order')
