@@ -1,0 +1,15 @@
+workerID,Name,jobTitle,license1,license2,noLicense,shift,level,availability,orderNo
+D159869,John Almond,Crane Operator,Tower Crane,Truck,K18910A,0800 - 1800,3,0,25721
+G182910,Jacob Caine,Driver,Truck,TELEHANDLER,B40167Y,1600 - 0200,2,1,25721
+U182018,Jessie Pinkman,Driver,Truck,,K81038B,0000 - 1000,2,0,25721
+D123801,Josh Nichols,Driver,Truck,,K78017A,1600 - 0200,2,0,25721
+G830182,Hugh Jackedman,Telehandler Operator,Telehandler,Truck,J82908J,0000 - 1000,2,1,25721
+J8021921,George Truong,Crane Operator,Tower Crane,Truck,J73972B,1600 - 0200,3,0,25721
+J0378298,James Tucker,Crane Operator,Tower Crane,Truck,J83017A,0800 - 1800,3,1,25721
+K287018,M.Ali,Telehandler Operator,Telehandler,Truck,J83098U,1600 - 0200,2,1,25721
+J726011,Valentino Rossi,Telehandler Operator,Telehandler,Truck,J72574A,0000 - 1000,2,1,25721
+J754851,Max Biaggi,Crane Operator,Tower Crane,Truck,J11049B,1600 - 0200,3,1,25721
+K825784,Jorge Martínez,Telehandler Operator,Telehandler,Truck,K64155A,0800 - 1800,2,0,25721
+J665882,Kenny Roberts,Crane Operator,Tower Crane,Truck,J10452B,1600 - 0200,3,1,25721
+K105984,Gary Hocking,Telehandler Operator,Telehandler,Truck,K74497B,0800 - 1800,2,1,25721
+J832947,Dieter Braun,Crane Operator,Tower Crane,Truck,K64884U,0000 - 1000,3,0,25721
