@@ -7,6 +7,7 @@ MERGE (pd:Project {projectNo: row.projectNo})
 LOAD CSV WITH HEADERS FROM 'file:///Site_Worker_Data.csv' AS row
 MERGE (worker:siteWorker {workerID: row.workerID})
   ON CREATE SET worker.Name = row.Name, worker.jobTitle = row.jobTitle, worker.license1 = row.license1, worker.license2 = row.license2, worker.noLicense = row.noLicense, worker.shift = row.shift, worker.level = row.level, worker.projectNo = row.projectNo, worker.availability = row.availability;
+
 A. Import NODES
 
 //LOAD DEPOT WORKER DATA
@@ -24,19 +25,33 @@ LOAD CSV WITH HEADERS FROM 'file:///Order_Data.csv' AS row
 MERGE (o:Order {orderNo: row.orderNo})
   ON CREATE SET o.customerID = row.customerID, o.projectNo = row.projectNo, o.orderDate = row.orderDate, o.requiredDate = row.requiredDate, o.truck = row.truck, o.productID = row.productID, o.quantity = row.quantity, o.reqLoading = row.reqLoading, o.reqTransport = row.reqTransport, o.reqUnload = row.Unload ;
 
-
-//LOAD ORDER TO ADD PRIORITY AND QUE
-LOAD CSV WITH HEADERS FROM 'file:///Delayed_Order.csv' AS row
-MERGE (o:Order {orderNo: row.orderNo})
-  SET o.Que = row.Que;
-
-
 //CREATE TRANSPORT HUB NODE
 MERGE (tr:Transport {transportHub: 698128})
 //Creates a node to indicate worker is a working on transport
 
 //CREATE DEPOT HUB NODE
 MERGE (dp:Depot {address:471000})
+
+//ORDERS FROM PROJECTS
+LOAD CSV WITH HEADERS FROM 'file:///Order_Data.csv' AS row
+
+MATCH (order:Order {orderNo: row.orderNo})
+MATCH (project:Project {projectNo: row.projectNo})
+MERGE (order)-[:ordered_by]->(project)
+
+//SITE WORKERS CURRENTLY WORKING AT RELATIONSHIP
+LOAD CSV WITH HEADERS FROM 'file:///Site_Worker_Data.csv' AS row
+
+MATCH (sw:siteWorker {workerID: row.workerID})
+MATCH (project:Project {projectNo: row.projectNo})
+MERGE (sw)-[:working_at]->(project)
+
+##### IDENTIFY DELAYS #####
+
+//LOAD ORDER TO ADD PRIORITY AND QUE
+LOAD CSV WITH HEADERS FROM 'file:///Delayed_Order.csv' AS row
+MERGE (o:Order {orderNo: row.orderNo})
+  SET o.Que = row.Que;
 
 
 ##### CREATE UNIQUENESS #####
@@ -48,12 +63,7 @@ The purpose of relationship CSV is to tell Neo4j that there is a relationship be
 User will then have to tell Neo4j what kind of relationship this is. In this example, the relationship is 'Shift_Overlap'.
 
 <<<<<<< leroyBranch
-//SITE WORKERS CURRENTLY WORKING AT RELATIONSHIP
-LOAD CSV WITH HEADERS FROM 'file:///Site_Worker_Data.csv' AS row
 
-MATCH (sw:siteWorker {workerID: row.workerID})
-MATCH (project:Project {projectNo: row.projectNo})
-MERGE (sw)-[:working_at]->(project)
 
 
 //DEPOT WORKERS CURRENTLY WORKING AT RELATIONSHIP
@@ -67,12 +77,7 @@ MATCH (tw:transportWorker)
 MATCH (tr:Transport)
 MERGE (tw)-[:working_at]->(tr)
 
-//ORDERS FROM PROJECTS
-LOAD CSV WITH HEADERS FROM 'file:///Order_Data.csv' AS row
 
-MATCH (order:Order {orderNo: row.orderNo})
-MATCH (project:Project {projectNo: row.projectNo})
-MERGE (order)-[:ordered_by]->(project)
 
 
 //DEPOT WORKERS WHO MEET REQUIREMENT
@@ -144,7 +149,7 @@ MATCH (worker:depotWorker {workerID: row.workerID})
 MATCH (worker2:transportWorker {workerID: row.matchingWorker})
 MERGE (worker)-[:Shift_Overlap]->(worker2);
 
-//SITE-TRANS REALTION
+//SITE-TRANS RELATION
 LOAD CSV WITH HEADERS FROM 'file:///Site_Trans_Relation.csv' AS row
 
 MATCH (worker:siteWorker {workerID: row.workerID})
